@@ -50,7 +50,7 @@ func printBanner() {
 	
 	// Setelah 30 detik selesai, cetak banner permanen berwarna Cyan
 	fmt.Println(ColorCyan + banner + ColorReset)
-	fmt.Println(ColorCyan + "============================" + ColorReset + "\n")
+	fmt.Println(ColorCyan + "==================================" + ColorReset + "\n")
 }
 
 func main() {
@@ -75,7 +75,7 @@ func main() {
 	fmt.Print("Concurrency : ")
 	fmt.Scanln(&concurrency)
 
-	fmt.Printf("\n["+ColorYellow+"!"+ColorReset+"] Memulai pengujian ke %s selama %d detik dengan %d worker...\n\n", targetURL, durationSeconds, concurrency)
+	fmt.Printf("\n["+ColorYellow+"💜💖"+ColorReset+"] Sending test ke %s selama %d detik dengan %d worker...\n\n", targetURL, durationSeconds, concurrency)
 
 	// Channel untuk mengontrol stop signal berdasarkan durasi
 	stopChan := make(chan struct{})
