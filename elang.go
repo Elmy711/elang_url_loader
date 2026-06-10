@@ -20,13 +20,13 @@ const (
 
 // Fungsi untuk menampilkan banner "MY EAGLE" dengan warna Cyan selama 30 detik
 func printBanner() {
-	banner :=             "=== MY EAGLE URL LOADER ==="
+	banner :=  "======= MY EAGLE URL LOADER ======"
 	fmt.Println()
 	
-	// Total durasi target: 10 detik.
-	// Kita buat 60 kali perulangan, di mana setiap perulangan memakan waktu total 500ms (0.5 detik).
-	// 20 x 0.5 detik = 10 detik.
-	totalLoops := 20 
+	// Total durasi target: 5 detik.
+	// Kita buat 10 kali perulangan, di mana setiap perulangan memakan waktu total 500ms (0.5 detik).
+	// 10 x 0.5 detik = 5 detik.
+	totalLoops := 10 
 	
 	fmt.Println(ColorCyan + " Starting Engine MY EAGLE ......" + ColorReset)
 	
@@ -61,7 +61,7 @@ func main() {
 	var durationSeconds int
 	var concurrency int
 
-	fmt.Print("Masukkan URL Target (contoh: https://websiteku.com): ")
+	fmt.Print("URL Target : ")
 	fmt.Scanln(&targetURL)
 
 	// Validasi input URL sederhana
@@ -69,10 +69,10 @@ func main() {
 		targetURL = "http://" + targetURL
 	}
 
-	fmt.Print("Masukkan Durasi Pengujian (dalam detik): ")
+	fmt.Print("Durasi : ")
 	fmt.Scanln(&durationSeconds)
 
-	fmt.Print("Masukkan Jumlah Concurrency (Jumlah worker/pembuat request): ")
+	fmt.Print("Concurrency : ")
 	fmt.Scanln(&concurrency)
 
 	fmt.Printf("\n["+ColorYellow+"!"+ColorReset+"] Memulai pengujian ke %s selama %d detik dengan %d worker...\n\n", targetURL, durationSeconds, concurrency)
