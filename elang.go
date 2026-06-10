@@ -20,15 +20,15 @@ const (
 
 // Fungsi untuk menampilkan banner "MY EAGLE" dengan warna Cyan selama 30 detik
 func printBanner() {
-	banner := "=== MY EAGLE LOAD TESTER ==="
+	banner :=             "=== MY EAGLE URL LOADER ==="
 	fmt.Println()
 	
-	// Total durasi target: 30 detik.
+	// Total durasi target: 10 detik.
 	// Kita buat 60 kali perulangan, di mana setiap perulangan memakan waktu total 500ms (0.5 detik).
-	// 60 x 0.5 detik = 30 detik.
-	totalLoops := 60 
+	// 20 x 0.5 detik = 10 detik.
+	totalLoops := 20 
 	
-	fmt.Println(ColorCyan + "[!] Mempersiapkan mesin MY EAGLE (Menunggu 30 detik)..." + ColorReset)
+	fmt.Println(ColorCyan + " Starting Engine MY EAGLE ......" + ColorReset)
 	
 	for i := 0; i < totalLoops; i++ {
 		fmt.Print(ColorCyan)
