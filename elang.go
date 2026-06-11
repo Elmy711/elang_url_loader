@@ -20,7 +20,7 @@ const (
 
 // Fungsi untuk menampilkan banner "MY EAGLE" dengan warna Cyan selama 30 detik
 func printBanner() {
-	banner := "==== MY EAGLE OVERLOAD TEST ===="
+	banner := "==== MY EAGLE URL LOAD TEST ===="
 	fmt.Println()
 	
 	// Total durasi target: 10 detik.
