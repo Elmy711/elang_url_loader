@@ -89,7 +89,7 @@ func main() {
 	}
 	client := &http.Client{
 		Transport: tr,
-		Timeout:   5 * time.Second,
+		Timeout:   10 * time.Second,
 	}
 
 	var wg sync.WaitGroup
