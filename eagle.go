@@ -23,31 +23,28 @@ const (
 var debugMode bool
 
 func printBanner() {
-	// 1. Cek UTF-8 dulu
 	if os.Getenv("LANG") == "" ||!strings.Contains(os.Getenv("LANG"), "UTF-8") {
-		fmt.Println(ColorRed + "[!] WARNING: Terminal lu bukan UTF-8" + ColorReset)
-		fmt.Println(ColorYellow + " Jalanin ini dulu: export LANG=en_US.UTF-8" + ColorReset)
-		fmt.Println(ColorYellow + " Kalau nggak, banner bakal jadi ââ" + ColorReset + "\n")
+		fmt.Println(ColorRed + "[!] WARNING: export LANG=en_US.UTF-8 dulu" + ColorReset + "\n")
 	}
-banner :=`
-  ███╗      ███╗██╗    ██╗ ███████╗ █████╗    ██████╗  ██╗        ███████╗
-  ████╗  ████║╚██╗ ██╔╝ ██╔════╝██╔══██╗██╔════╝ ██║        ██╔════╝
-  ██╔████╔██║   ╚████╔╝ █████╗   ███████║██║ ███╗  ██║         █████╗
-  ██║╚██╔╝██║    ╚██╔╝   ██╔══╝   ██╔══██║██║     ██║ ██║         ██╔══╝
-  ██║ ╚═╝  ██║      ██║     ███████╗██║   ██║╚██████╔╝███████╗███████╗
-  ╚═╝        ╚═╝      ╚═╝     ╚══════╝╚═╝ ╚═╝   ╚═════╝ ╚══════╝  ╚══════╝`
 
-	lines := strings.Split(banner, "\n")
-	padStr := strings.Repeat(" ", 8) // 8 spasi = tengah buat layar HP 80 kolom
+	// Banner MINI, lebar 35 kolom. Pasti muat
+	banner := `
+   ██████╗ █████╗ ██████╗ ██╗ ███████╗
+   ██╔══██╗██╔══██╗██╔════╝ ██║ ██╔════╝
+   ██████╔╝███████║██║ ███╗██║ █████╗
+   ██╔══██╗██╔══██║██║ ██║██║ ██╔══╝
+   ██████╔╝██║ ██║╚██████╔╝███████╗███████╗
+   ╚═════╝ ╚═╝ ╚═╝ ╚═════╝ ╚══════╝╚══════╝
+`
+	// 18 spasi = tengah di layar 80 kolom. 12 spasi buat layar 60 kolom
+	padStr := strings.Repeat(" ", 12)
 
-	// Langsung print aja, tanpa animasi biar nggak scroll
 	fmt.Print(ColorCyan)
-	for _, line := range lines {
-		fmt.Println(padStr + line) // Spasi + banner
+	for _, line := range strings.Split(strings.TrimSpace(banner), "\n") {
+		fmt.Println(padStr + line)
 	}
 	fmt.Println(ColorReset)
-	fmt.Println(padStr + ColorCyan + "💖💜 Starting MY EAGLE script 💜💖" + ColorReset)
-	fmt.Println(padStr + ColorCyan + "©©©©©©©©©©©©©©©©©©©©" + ColorReset + "\n")
+	fmt.Println(padStr + ColorCyan + "💜 MY EAGLE v2 [MINI] 💜" + ColorReset + "\n")
 }
 
 func main() {
@@ -95,7 +92,7 @@ func main() {
 				contentType = "application/json"
 			}
 			bodyReader = strings.NewReader(requestBody)
-	}
+		}
 	}
 
 	customHeaders := make(map[string]string)
@@ -107,7 +104,7 @@ func main() {
 		headerKey = strings.TrimSpace(headerKey)
 		if strings.ToLower(headerKey) == "selesai" {
 			break
-	}
+		}
 		if headerKey == "" {
 			fmt.Println(ColorYellow + " Key header tidak boleh kosong." + ColorReset)
 			continue
@@ -150,7 +147,7 @@ func main() {
 						time.Sleep(50 * time.Millisecond)
 						continue
 					}
-					req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+					req.Header.Set("User-Agent", "Mozilla/5.0")
 					req.Header.Set("Accept", "*/*")
 					if bodyReader!= nil && contentType!= "" {
 						req.Header.Set("Content-Type", contentType)
@@ -188,14 +185,6 @@ func main() {
 	wg.Wait()
 
 	fmt.Println("\n" + ColorCyan + "=================================" + ColorReset)
-	fmt.Println(ColorCyan + " STATISTIK " + ColorReset)
-	fmt.Println(ColorCyan + "=================================" + ColorReset)
-	fmt.Printf("Request "+ColorGreen+"Sukses"+ColorReset+" : %d\n", successCount)
-	fmt.Printf("Request "+ColorRed+"Gagal"+ColorReset+" : %d\n", failCount)
-	total := successCount + failCount
-	fmt.Printf("Total Requests : %d\n", total)
-	if total > 0 && durationSeconds > 0 {
-		fmt.Printf("Avg Requests/sec: %.2f\n", float64(total)/float64(durationSeconds))
-	}
+	fmt.Printf("Request "+ColorGreen+"Sukses"+ColorReset+" : %d | "+ColorRed+"Gagal"+ColorReset+" : %d\n", successCount, failCount)
 	fmt.Println(ColorCyan + "=================================" + ColorReset)
 }
