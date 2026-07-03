@@ -25,16 +25,6 @@ const (
 var debugMode bool
 
 // Fungsi untuk menampilkan banner "MY EAGLE TOOLS" dengan warna Cyan dan animasi
-func printBanner() {
-	"███╗   ███╗██╗   ██╗    ███████╗ █████╗  ██████╗ ██╗     ███████╗"    
-"████╗ ████║╚██╗ ██╔╝    ██╔════╝██╔══██╗██╔════╝ ██║     ██╔════╝"   
-"██╔████╔██║ ╚████╔╝     █████╗  ███████║██║  ███╗██║     █████╗"      
-"██║╚██╔╝██║  ╚██╔╝      ██╔══╝  ██╔══██║██║   ██║██║     ██╔══╝"     
-"██║ ╚═╝ ██║   ██║       ███████╗██║  ██║╚██████╔╝███████╗███████╗"   
-"╚═╝     ╚═╝   ╚═╝       ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝"  
-	fmt.Println()
-
-	fmt.Println(ColorCyan + "💖💜 Starting MY EAGLE script 💜💖" + ColorReset)
 
 	// Animasi sederhana untuk banner
 	totalLoops := 10 // Jumlah pengulangan animasi banner
@@ -51,7 +41,18 @@ func printBanner() {
 		}
 
 		time.Sleep(time.Duration(gapSleepMs) * time.Millisecond)
+func printBanner() {
+	banner := `███╗   ███╗██╗   ██╗    ███████╗ █████╗  ██████╗ ██╗     ███████╗
+████╗ ████║╚██╗ ██╔╝    ██╔════╝██╔══██╗██╔════╝ ██║     ██╔════╝
+██╔████╔██║ ╚████╔╝     █████╗  ███████║██║  ███╗██║     █████╗
+██║╚██╔╝██║  ╚██╔╝      ██╔══╝  ██╔══██║██║   ██║██║     ██╔══╝
+██║ ╚═╝ ██║   ██║       ███████╗██║  ██║╚██████╔╝███████╗███████╗
+╚═╝     ╚═╝   ╚═╝       ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝`
 
+	fmt.Println(banner) 
+
+	fmt.Println(ColorCyan + "💖💜 Starting MY EAGLE script 💜💖" + ColorReset)
+}
 		// Hapus banner yang tampil dengan menimpanya menggunakan '\r' dan spasi
 		fmt.Print("\r" + strings.Repeat(" ", len(banner)) + "\r")
 
