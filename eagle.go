@@ -55,7 +55,7 @@ func printBanner() {
 
 	// Tampilkan banner final dengan warna Cyan
 	fmt.Println(ColorCyan + banner + ColorReset)
-	fmt.Println(ColorCyan + "==================================" + ColorReset + "\n")
+	fmt.Println(ColorCyan + "©©©©©©©©©©©©©©©©©©©©©©©©©©©©©" + ColorReset + "\n")
 }
 
 func main() {
