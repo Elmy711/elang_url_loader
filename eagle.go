@@ -49,11 +49,13 @@ func printBanner() {
 ██║ ╚═╝ ██║   ██║       ███████╗██║  ██║╚██████╔╝███████╗███████╗
 ╚═╝     ╚═╝   ╚═╝       ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝`
 
-	fmt.Println(banner) 
-
+	fmt.Println(banner)
+	fmt.Println()
 	fmt.Println(ColorCyan + "💖💜 Starting MY EAGLE script 💜💖" + ColorReset)
 }
-		// Hapus banner yang tampil dengan menimpanya menggunakan '\r' dan spasi
+	
+}
+		// Hapus banner yang tampil dengan menimpanya menggunakan '\r' dllan spasi
 		fmt.Print("\r" + strings.Repeat(" ", len(banner)) + "\r")
 
 		time.Sleep(time.Duration(eraseSleepMs) * time.Millisecond)
