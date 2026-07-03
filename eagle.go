@@ -29,13 +29,13 @@ func printBanner() {
 		fmt.Println(ColorYellow + " Jalanin ini dulu: export LANG=en_US.UTF-8" + ColorReset)
 		fmt.Println(ColorYellow + " Kalau nggak, banner bakal jadi ââ" + ColorReset + "\n")
 	}
-
-	banner := `███╗ ███╗██╗ ██╗ ███████╗ █████╗ ██████╗ ██╗ ███████╗
-████╗ ████║╚██╗ ██╔╝ ██╔════╝██╔══██╗██╔════╝ ██║ ██╔════╝
-██╔████╔██║ ╚████╔╝ █████╗ ███████║██║ ███╗██║ █████╗
-██║╚██╔╝██║ ╚██╔╝ ██╔══╝ ██╔══██║██║ ██║██║ ██╔══╝
-██║ ╚═╝ ██║ ██║ ███████╗██║ ██║╚██████╔╝███████╗███████╗
-╚═╝ ╚═╝ ╚═╝ ╚══════╝╚═╝ ╚═╝ ╚═════╝ ╚══════╝╚══════╝`
+banner :=:`
+  ███╗      ███╗██╗    ██╗ ███████╗ █████╗    ██████╗  ██╗        ███████╗
+  ████╗  ████║╚██╗ ██╔╝ ██╔════╝██╔══██╗██╔════╝ ██║        ██╔════╝
+  ██╔████╔██║   ╚████╔╝ █████╗   ███████║██║ ███╗  ██║         █████╗
+  ██║╚██╔╝██║    ╚██╔╝   ██╔══╝   ██╔══██║██║     ██║ ██║         ██╔══╝
+  ██║ ╚═╝  ██║      ██║     ███████╗██║   ██║╚██████╔╝███████╗███████╗
+  ╚═╝        ╚═╝      ╚═╝     ╚══════╝╚═╝ ╚═╝   ╚═════╝ ╚══════╝  ╚══════╝`
 
 	lines := strings.Split(banner, "\n")
 	padStr := strings.Repeat(" ", 8) // 8 spasi = tengah buat layar HP 80 kolom
@@ -47,7 +47,7 @@ func printBanner() {
 	}
 	fmt.Println(ColorReset)
 	fmt.Println(padStr + ColorCyan + "💖💜 Starting MY EAGLE script 💜💖" + ColorReset)
-	fmt.Println(padStr + ColorCyan + "©" + ColorReset + "\n")
+	fmt.Println(padStr + ColorCyan + "©©©©©©©©©©©©©©©©©©©©" + ColorReset + "\n")
 }
 
 func main() {
