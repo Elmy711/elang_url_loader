@@ -29,7 +29,7 @@ func printBanner() {
 		fmt.Println(ColorYellow + " Jalanin ini dulu: export LANG=en_US.UTF-8" + ColorReset)
 		fmt.Println(ColorYellow + " Kalau nggak, banner bakal jadi ââ" + ColorReset + "\n")
 	}
-banner :=:`
+banner :=`
   ███╗      ███╗██╗    ██╗ ███████╗ █████╗    ██████╗  ██╗        ███████╗
   ████╗  ████║╚██╗ ██╔╝ ██╔════╝██╔══██╗██╔════╝ ██║        ██╔════╝
   ██╔████╔██║   ╚████╔╝ █████╗   ███████║██║ ███╗  ██║         █████╗
