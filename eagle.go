@@ -7,8 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/exec"
-	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -24,26 +22,14 @@ const (
 
 var debugMode bool
 
-// Fungsi buat dapetin lebar terminal. Fallback ke 80 kalau gagal.
-func getTerminalWidth() int {
-	cmd := exec.Command("stty", "size")
-	cmd.Stdin = os.Stdin
-	out, err := cmd.Output()
-	if err!= nil {
-		return 80 // default
-	}
-	parts := strings.Fields(string(out))
-	if len(parts) < 2 {
-		return 80
-	}
-	width, err := strconv.Atoi(parts[1])
-	if err!= nil {
-		return 80
-	}
-	return width
-}
-
 func printBanner() {
+	// 1. Cek UTF-8 dulu
+	if os.Getenv("LANG") == "" ||!strings.Contains(os.Getenv("LANG"), "UTF-8") {
+		fmt.Println(ColorRed + "[!] WARNING: Terminal lu bukan UTF-8" + ColorReset)
+		fmt.Println(ColorYellow + " Jalanin ini dulu: export LANG=en_US.UTF-8" + ColorReset)
+		fmt.Println(ColorYellow + " Kalau nggak, banner bakal jadi ââ" + ColorReset + "\n")
+	}
+
 	banner := `███╗ ███╗██╗ ██╗ ███████╗ █████╗ ██████╗ ██╗ ███████╗
 ████╗ ████║╚██╗ ██╔╝ ██╔════╝██╔══██╗██╔════╝ ██║ ██╔════╝
 ██╔████╔██║ ╚████╔╝ █████╗ ███████║██║ ███╗██║ █████╗
@@ -52,44 +38,12 @@ func printBanner() {
 ╚═╝ ╚═╝ ╚═╝ ╚══════╝╚═╝ ╚═╝ ╚═════╝ ╚══════╝╚══════╝`
 
 	lines := strings.Split(banner, "\n")
-	termWidth := getTerminalWidth()
-	
-	// Cari baris banner paling panjang
-	maxLen := 0
-	for _, line := range lines {
-		if len(line) > maxLen {
-			maxLen = len(line)
-	}
-	}
-	
-	// Hitung spasi kiri biar tengah
-	padding := (termWidth - maxLen) / 2
-	if padding < 0 {
-		padding = 0
-	}
-	padStr := strings.Repeat(" ", padding)
+	padStr := strings.Repeat(" ", 8) // 8 spasi = tengah buat layar HP 80 kolom
 
-	totalLoops := 2 // 2x biar nggak lama
-	charSleepMs := 1
-
-	for i := 0; i < totalLoops; i++ {
-		fmt.Print(ColorCyan)
-		for _, line := range lines {
-			fmt.Print(padStr) // <- Kunci: print spasi dulu
-			for j := 0; j < len(line); j++ {
-				fmt.Print(string(line[j]))
-				time.Sleep(time.Duration(charSleepMs) * time.Millisecond)
-			}
-			fmt.Println()
-	}
-		time.Sleep(80 * time.Millisecond)
-		fmt.Print("\033[H\033[2J") // Clear screen biar animasinya rapi
-	}
-
-	// Banner final di tengah tanpa animasi
+	// Langsung print aja, tanpa animasi biar nggak scroll
 	fmt.Print(ColorCyan)
 	for _, line := range lines {
-		fmt.Println(padStr + line)
+		fmt.Println(padStr + line) // Spasi + banner
 	}
 	fmt.Println(ColorReset)
 	fmt.Println(padStr + ColorCyan + "💖💜 Starting MY EAGLE script 💜💖" + ColorReset)
@@ -141,7 +95,7 @@ func main() {
 				contentType = "application/json"
 			}
 			bodyReader = strings.NewReader(requestBody)
-		}
+	}
 	}
 
 	customHeaders := make(map[string]string)
@@ -153,7 +107,7 @@ func main() {
 		headerKey = strings.TrimSpace(headerKey)
 		if strings.ToLower(headerKey) == "selesai" {
 			break
-		}
+	}
 		if headerKey == "" {
 			fmt.Println(ColorYellow + " Key header tidak boleh kosong." + ColorReset)
 			continue
@@ -182,7 +136,7 @@ func main() {
 
 	for i := 0; i < concurrency; i++ {
 		wg.Add(1)
-	workerID := i
+		workerID := i
 		go func() {
 			defer wg.Done()
 			for {
@@ -236,7 +190,6 @@ func main() {
 	fmt.Println("\n" + ColorCyan + "=================================" + ColorReset)
 	fmt.Println(ColorCyan + " STATISTIK " + ColorReset)
 	fmt.Println(ColorCyan + "=================================" + ColorReset)
-	fmt.Printf("Target URL : %s\n", targetURL)
 	fmt.Printf("Request "+ColorGreen+"Sukses"+ColorReset+" : %d\n", successCount)
 	fmt.Printf("Request "+ColorRed+"Gagal"+ColorReset+" : %d\n", failCount)
 	total := successCount + failCount
