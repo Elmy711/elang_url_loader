@@ -26,7 +26,7 @@ var debugMode bool
 
 // Fungsi untuk menampilkan banner "MY EAGLE TOOLS" dengan warna Cyan dan animasi
 func printBanner() {
-	banner := "MY EAGLE TOOLS" // Teks banner yang baru
+	banner := ">>>>>>>>>>>MY EAGLE TOOLS IS ON <<<<<<<<<<<<" // Teks banner yang baru
 	fmt.Println()
 
 	fmt.Println(ColorCyan + "💖💜 Starting MY EAGLE script 💜💖" + ColorReset)
